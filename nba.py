@@ -114,7 +114,7 @@ if __name__ == '__main__':
     # right = shot_df[shot_df.SHOT_ZONE_AREA == 'Right Side(R)']
     # plt.figure(figsize=(12,11))
     # plt.scatter(right.LOC_X, right.LOC_Y)
-    plt.xlim(300,-300)
+    plt.xlim(-300,300)
     plt.ylim(-100,500)
     draw_court()
     plt.show()
