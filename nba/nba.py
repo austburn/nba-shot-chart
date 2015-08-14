@@ -5,7 +5,8 @@ matplotlib.use('Qt4Agg')
 import pandas
 import seaborn
 from IPython.display import display
-from nba.court_utils import draw_court
+import matplotlib.pyplot as plt
+from court_utils import draw_court
 
 
 shot_chart_url = 'http://stats.nba.com/stats/shotchartdetail?CFID=33&CFPARAMS=2014-15&'\
@@ -16,7 +17,7 @@ shot_chart_url = 'http://stats.nba.com/stats/shotchartdetail?CFID=33&CFPARAMS=20
     'TeamID=0&VsConference=&VsDivision=&mode=Advanced&showDetails=0&showShots=1&showZones=0'
 
 
-def get_shot_statistics():
+def get_shot_dataframe():
     harden = open('harden.json')
     harden_json = json.loads(harden.readlines()[0])
     # # Get shot chart data
@@ -28,12 +29,11 @@ def get_shot_statistics():
     headers = harden_json.get('resultSets')[0].get('headers')
     shots = harden_json.get('resultSets')[0].get('rowSet')
 
-    return shots
+    return pandas.DataFrame(shots, columns=headers)
 
 
 if __name__ == '__main__':
-    shots = get_shot_statistics()
-    shot_df = pandas.DataFrame(shots, columns=headers)
+    shot_df = get_shot_dataframe()
 
     with pandas.option_context('display.max_columns', None):
         display(shot_df.head())
