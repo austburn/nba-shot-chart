@@ -5,5 +5,5 @@ Credit to: http://savvastjortjoglou.com/nba-shot-sharts.html
 ```bash
 pip install requirements
 . env/bin/activate
-python nba.py
+python nba/nba.py
 ```
